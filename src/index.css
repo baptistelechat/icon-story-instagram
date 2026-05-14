@@ -1,7 +1,78 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Base — zinc très sombre avec teinte bleue subtile */
+  --background: oklch(0.115 0.012 278);
+  --foreground: oklch(0.965 0.006 278);
+  --card: oklch(0.155 0.01 278);
+  --card-foreground: oklch(0.965 0.006 278);
+  --popover: oklch(0.155 0.01 278);
+  --popover-foreground: oklch(0.965 0.006 278);
+
+  /* Primaire — violet distinctif (ni indigo ni purple générique) */
+  --primary: oklch(0.685 0.205 296);
+  --primary-foreground: oklch(0.115 0.012 278);
+
+  --secondary: oklch(0.225 0.012 278);
+  --secondary-foreground: oklch(0.855 0.006 278);
+  --muted: oklch(0.2 0.01 278);
+  --muted-foreground: oklch(0.52 0.01 278);
+  --accent: oklch(0.23 0.012 278);
+  --accent-foreground: oklch(0.965 0.006 278);
+  --destructive: oklch(0.648 0.21 25);
+
+  --border: oklch(0.27 0.012 278);
+  --input: oklch(0.225 0.012 278);
+  --ring: oklch(0.685 0.205 296);
+  --radius: 0.5rem;
+
+  /* Sidebar — légèrement plus sombre que la carte */
+  --sidebar: oklch(0.13 0.011 278);
+  --sidebar-foreground: oklch(0.965 0.006 278);
+  --sidebar-border: oklch(0.215 0.012 278);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
@@ -9,13 +80,17 @@ body {
   min-height: 100svh;
 }
 
-.icon-grid::-webkit-scrollbar {
+/* Scrollbar custom — sidebar et icon-grid */
+::-webkit-scrollbar {
   width: 4px;
 }
-.icon-grid::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent;
 }
-.icon-grid::-webkit-scrollbar-thumb {
-  background: #374151;
+::-webkit-scrollbar-thumb {
+  background: oklch(0.32 0.012 278);
   border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.42 0.012 278);
 }

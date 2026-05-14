@@ -23,21 +23,41 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-950 text-white">
+    <div className="min-h-screen flex bg-background text-foreground">
       <Controls state={state} onUpdate={update} />
-      <main className="flex-1 flex flex-col items-center justify-center gap-8 p-12">
-        <div className="flex flex-col items-center gap-2">
-          <h1 className="text-3xl font-bold tracking-tight text-white">
+
+      <main className="flex-1 flex flex-col items-center justify-center gap-8 p-12 relative overflow-hidden">
+        {/* Grille de points décorative */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, oklch(0.35 0.012 278) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            opacity: 0.35,
+          }}
+        />
+
+        {/* En-tête */}
+        <div className="flex flex-col items-center gap-1.5 relative z-10">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Icon Maker
           </h1>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground">
             Crée et exporte ton icône en PNG 1080×1080
           </p>
         </div>
-        <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
+
+        {/* Zone de preview */}
+        <div className="relative z-10 p-6 bg-card border border-border rounded-2xl shadow-2xl shadow-black/40">
           <IconCanvas ref={canvasRef} state={state} />
         </div>
-        <ExportButton canvasRef={canvasRef} />
+
+        {/* Bouton d'export */}
+        <div className="relative z-10">
+          <ExportButton canvasRef={canvasRef} />
+        </div>
       </main>
     </div>
   );

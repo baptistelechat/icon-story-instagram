@@ -25,7 +25,9 @@ const IconCanvas = forwardRef<HTMLDivElement, IconCanvasProps>(
 
     const Icon =
       mode === "lucide"
-        ? ((LucideIcons as Record<string, IconComponent>)[iconName] ?? null)
+        ? ((LucideIcons as unknown as Record<string, IconComponent>)[
+            iconName
+          ] ?? null)
         : null;
 
     return (

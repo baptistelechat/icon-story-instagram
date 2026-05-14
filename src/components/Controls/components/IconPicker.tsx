@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import * as LucideIcons from "lucide-react";
 import type { LucideProps } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 type IconComponent = React.FC<LucideProps>;
 
@@ -31,17 +33,18 @@ export default function IconPicker({
 
   return (
     <div className="flex flex-col gap-2">
-      <input
+      <Input
         type="text"
-        placeholder="Rechercher une icône..."
+        placeholder="Rechercher..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         aria-label="Rechercher une icône Lucide"
-        className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500"
       />
-      <div className="icon-grid grid grid-cols-5 gap-1 max-h-60 overflow-y-auto pr-1">
+      <div className="grid grid-cols-5 gap-1 max-h-56 overflow-y-auto pr-0.5">
         {filtered.map((name) => {
-          const Icon = (LucideIcons as Record<string, IconComponent>)[name];
+          const Icon = (
+            LucideIcons as unknown as Record<string, IconComponent>
+          )[name];
           const isSelected = name === selectedIcon;
           return (
             <button
@@ -49,22 +52,27 @@ export default function IconPicker({
               onClick={() => onSelect(name)}
               title={name}
               aria-label={`Sélectionner l'icône ${name}`}
-              className={`flex items-center justify-center p-2 rounded-lg transition-all cursor-pointer ${
+              className={cn(
+                "flex items-center justify-center p-2 rounded-md transition-all cursor-pointer",
                 isSelected
-                  ? "bg-indigo-600 text-white"
-                  : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white"
-              }`}
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary text-muted-foreground hover:bg-accent hover:text-foreground",
+              )}
             >
               {Icon && (
-                <Icon size={18} color={isSelected ? "#ffffff" : iconColor} />
+                <Icon
+                  size={16}
+                  color={isSelected ? "currentColor" : iconColor}
+                  aria-hidden
+                />
               )}
             </button>
           );
         })}
       </div>
       {!search.trim() && (
-        <p className="text-xs text-gray-600 text-center">
-          Parmi {ALL_ICONS.length} icônes disponibles
+        <p className="text-[10px] text-muted-foreground/60 text-center">
+          {ALL_ICONS.length} icônes disponibles
         </p>
       )}
     </div>
