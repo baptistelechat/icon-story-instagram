@@ -13,7 +13,7 @@ export default function ColorInput({
   label,
 }: ColorInputProps) {
   const [localValue, setLocalValue] = useState(value);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     return () => {

@@ -47,3 +47,13 @@ UI validée visuellement via dev-browser sur les deux viewports.
 - [BDR-005](decisions/BDR-005.md) — Layout responsive flex-col-reverse
 - [BLK-004](blockers/BLK-004.md) — Color picker laggy, résolu RAF debounce
 - [EVAL-003](evals/EVAL-003.md) — Validation responsive mobile + desktop
+
+---
+
+Session courte de correction d'une erreur de build Vercel. `ColorInput.tsx:16` utilisait `useRef<number>()` sans argument — syntaxe valide en React 18 mais supprimée en React 19 (erreur TS2554). Fix en une ligne : `useRef<number | undefined>(undefined)`. Build local repassé immédiatement.
+
+React Doctor lancé post-fix : score 99/100, aucune régression. Un warning `no-derived-useState` sur `localValue` est un faux positif documenté — état local intentionnel pour le debounce RAF du color picker.
+
+**Entrées clés :**
+
+- [BLK-005](blockers/BLK-005.md) — Build Vercel cassé useRef React 19, résolu
