@@ -19,7 +19,7 @@ interface SectionProps {
 
 function Section({ label, children }: SectionProps) {
   return (
-    <div className="flex flex-col gap-3 px-4 py-3.5">
+    <div className="flex flex-col gap-3 px-3 md:px-4 py-3.5">
       <Label>{label}</Label>
       {children}
     </div>
@@ -28,9 +28,9 @@ function Section({ label, children }: SectionProps) {
 
 export default function Controls({ state, onUpdate }: ControlsProps) {
   return (
-    <aside className="w-72 shrink-0 bg-sidebar border-r border-sidebar-border flex flex-col overflow-y-auto">
+    <aside className="w-full md:w-72 shrink-0 bg-sidebar border-t border-sidebar-border md:border-t-0 md:border-r flex flex-col overflow-y-auto">
       {/* En-tête */}
-      <div className="px-4 py-4 border-b border-sidebar-border">
+      <div className="px-3 md:px-4 py-4 border-b border-sidebar-border">
         <p className="text-sm font-semibold text-foreground tracking-tight">
           Paramètres
         </p>
@@ -73,7 +73,6 @@ export default function Controls({ state, onUpdate }: ControlsProps) {
           <Section label="Icône">
             <IconPicker
               selectedIcon={state.iconName}
-              iconColor={state.iconColor}
               onSelect={(name) => onUpdate("iconName", name)}
             />
           </Section>

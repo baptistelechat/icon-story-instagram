@@ -13,13 +13,11 @@ const ALL_ICONS = Object.keys(LucideIcons)
 
 interface IconPickerProps {
   selectedIcon: string;
-  iconColor: string;
   onSelect: (name: string) => void;
 }
 
 export default function IconPicker({
   selectedIcon,
-  iconColor,
   onSelect,
 }: IconPickerProps) {
   const [search, setSearch] = useState("");
@@ -59,13 +57,7 @@ export default function IconPicker({
                   : "bg-secondary text-muted-foreground hover:bg-accent hover:text-foreground",
               )}
             >
-              {Icon && (
-                <Icon
-                  size={16}
-                  color={isSelected ? "currentColor" : iconColor}
-                  aria-hidden
-                />
-              )}
+              {Icon && <Icon size={16} color="currentColor" aria-hidden />}
             </button>
           );
         })}

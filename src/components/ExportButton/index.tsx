@@ -35,7 +35,7 @@ export default function ExportButton({ canvasRef }: ExportButtonProps) {
       disabled={loading}
       aria-label="Exporter l'icône en PNG"
       size="lg"
-      className="gap-2.5 px-8"
+      className="w-full md:w-auto gap-2.5 px-8"
     >
       {loading ? (
         <Loader2 size={16} className="animate-spin" />

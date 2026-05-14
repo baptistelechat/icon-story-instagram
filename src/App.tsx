@@ -23,10 +23,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex bg-background text-foreground">
+    <div className="flex flex-col-reverse md:flex-row md:min-h-screen bg-background text-foreground">
       <Controls state={state} onUpdate={update} />
 
-      <main className="flex-1 flex flex-col items-center justify-center gap-8 p-12 relative overflow-hidden">
+      <main className="flex-1 flex flex-col items-center justify-start md:justify-center gap-6 p-4 py-8 md:p-12 relative overflow-hidden">
         {/* Grille de points décorative */}
         <div
           aria-hidden
@@ -41,21 +41,21 @@ export default function App() {
 
         {/* En-tête */}
         <div className="flex flex-col items-center gap-1.5 relative z-10">
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
             Icon Maker
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs md:text-sm text-muted-foreground text-center">
             Crée et exporte ton icône en PNG 1080×1080
           </p>
         </div>
 
         {/* Zone de preview */}
-        <div className="relative z-10 p-6 bg-card border border-border rounded-2xl shadow-2xl shadow-black/40">
+        <div className="relative z-10 p-3 md:p-6 bg-card border border-border rounded-2xl shadow-2xl shadow-black/40 w-full max-w-[448px]">
           <IconCanvas ref={canvasRef} state={state} />
         </div>
 
         {/* Bouton d'export */}
-        <div className="relative z-10">
+        <div className="relative z-10 w-full max-w-[448px] md:w-auto">
           <ExportButton canvasRef={canvasRef} />
         </div>
       </main>

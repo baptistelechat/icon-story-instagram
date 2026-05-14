@@ -5,8 +5,6 @@ import type { IconState } from "../../types";
 
 type IconComponent = React.FC<LucideProps>;
 
-const PREVIEW_SIZE = 400;
-
 interface IconCanvasProps {
   state: IconState;
 }
@@ -33,15 +31,13 @@ const IconCanvas = forwardRef<HTMLDivElement, IconCanvasProps>(
     return (
       <div
         ref={ref}
+        className="w-full aspect-square overflow-hidden"
         style={{
-          width: PREVIEW_SIZE,
-          height: PREVIEW_SIZE,
           backgroundColor,
           borderRadius: `${borderRadius}px`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          flexShrink: 0,
         }}
       >
         {mode === "lucide" && Icon && (
